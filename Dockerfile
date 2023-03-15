@@ -53,6 +53,12 @@ RUN touch $HOME/.bashrc && \
 RUN conda install pytorch==1.12.1 torchvision==0.13.1 torchaudio==0.12.1 cudatoolkit=11.6 -c pytorch -c conda-forge
 RUN conda clean -ya
 RUN conda install -c conda-forge cudatoolkit-dev=${CUDA_VERSION}  -y
+RUN conda create --name openmmlab python=3.8 -y
+RUN conda activate openmmlab
+RUN conda install pytorch torchvision -c pytorch
+RUN pip install -U openmim
+RUN mim install mmcv-full
+RUN git clone https://github.com/open-mmlab/mmdetection.git
 
 #######################################################################################
 # Project specific
